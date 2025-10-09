@@ -19,3 +19,27 @@ Jest with `jest-expo` and Testing Library drives unit and interaction tests. Co-
 
 ## Commit & Pull Request Guidelines
 Follow the conventional commit style already in history (`feat(mobile): ...`, `fix: ...`, `chore: ...`). Scope commits to a single concern, tie issues in the summary when possible, and keep body lines wrapped at 72 characters. Pull requests should describe the user-facing change, list Nx commands executed (build, lint, test), and include screenshots or screen captures for UI updates. Request a reviewer familiar with the affected area and wait for green CI before merging.
+
+
+<!-- nx configuration start-->
+<!-- Leave the start & end comments to automatically receive updates. -->
+
+# General Guidelines for working with Nx
+
+- When running tasks (for example build, lint, test, e2e, etc.), always prefer running the task through `nx` (i.e. `nx run`, `nx run-many`, `nx affected`) instead of using the underlying tooling directly
+- You have access to the Nx MCP server and its tools, use them to help the user
+- When answering questions about the repository, use the `nx_workspace` tool first to gain an understanding of the workspace architecture where applicable.
+- When working in individual projects, use the `nx_project_details` mcp tool to analyze and understand the specific project structure and dependencies
+- For questions around nx configuration, best practices or if you're unsure, use the `nx_docs` tool to get relevant, up-to-date docs. Always use this instead of assuming things about nx configuration
+- If the user needs help with an Nx configuration or project graph error, use the `nx_workspace` tool to get any errors
+
+# CI Error Guidelines
+
+If the user wants help with fixing an error in their CI pipeline, use the following flow:
+- Retrieve the list of current CI Pipeline Executions (CIPEs) using the `nx_cloud_cipe_details` tool
+- If there are any errors, use the `nx_cloud_fix_cipe_failure` tool to retrieve the logs for a specific task
+- Use the task logs to see what's wrong and help the user fix their problem. Use the appropriate tools if necessary
+- Make sure that the problem is fixed by running the task that you passed into the `nx_cloud_fix_cipe_failure` tool
+
+
+<!-- nx configuration end-->
